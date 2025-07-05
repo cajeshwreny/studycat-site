@@ -21,6 +21,26 @@
       line-height: 1.6;
     }
 
+    nav {
+      background-color: var(--uky-blue);
+      padding: 1rem;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
     header {
       background: var(--uky-blue);
       color: white;
@@ -28,14 +48,8 @@
       text-align: center;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    h2 {
-      color: var(--uky-blue);
-    }
+    h1 { margin: 0; font-size: 2.5rem; }
+    h2 { color: var(--uky-blue); }
 
     main {
       padding: 1.5rem 2rem;
@@ -43,13 +57,8 @@
       margin: auto;
     }
 
-    .section {
-      margin-bottom: 2rem;
-    }
-
-    ul {
-      padding-left: 1.2rem;
-    }
+    .section { margin-bottom: 2rem; }
+    ul { padding-left: 1.2rem; }
 
     a {
       color: var(--uky-blue);
@@ -57,9 +66,7 @@
       transition: 0.2s;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
+    a:hover { text-decoration: underline; }
 
     footer {
       text-align: center;
@@ -69,22 +76,47 @@
       color: #666;
     }
 
-    .cat-icon {
-      font-size: 1.3em;
+    input[type="text"] {
+      width: 100%;
+      padding: 0.7rem;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body>
 
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="physics.html">Physics</a></li>
+      <li><a href="math.html">Math</a></li>
+      <li><a href="electrical.html">Electrical</a></li>
+      <li><a href="https://forms.gle/FN7dyxyUyQMhCxyT8" target="_blank">Submit</a></li>
+    </ul>
+  </nav>
+
   <header>
     <h1>StudyCat 🐱</h1>
-    <p>Free practice exams, notes, and study guides for Univeristy of Kentucky students</p>
+    <p>Free practice exams, notes, and study guides for University of Kentucky students</p>
   </header>
 
   <main>
     <section class="section">
       <h2>📢 Welcome!</h2>
-      <p>StudyCat is a student-run archive of Univeristy of Kentucky Engineering study materials. Everything here is free to access, and anyone can contribute.</p>
+      <p>StudyCat is a student-run archive of University of Kentucky Engineering study materials. Everything here is free to access, and anyone can contribute.</p>
+    </section>
+
+    <section class="section">
+      <input type="text" id="search" placeholder="Search for a course (e.g. MA113, PHY211)...">
+      <ul id="course-list">
+        <li><a href="courses/ma113/index.html">MA113 – Calculus I</a></li>
+        <li><a href="courses/che105/index.html">CHE105 – General Chemistry</a></li>
+        <li><a href="courses/phy211/index.html">PHY211 – General Physics</a></li>
+        <li><a href="courses/cs215/index.html">ME220 – Engineering Thermodynamics I</a></li>
+      </ul>
     </section>
 
     <section class="section">
@@ -93,16 +125,6 @@
         <li><a href="files/MA113_Fall2023_Exam1.pdf">MA113 Calculus I – Fall 2023 Exam 1</a></li>
         <li><a href="files/CHE105_ReviewSheet.pdf">CHE105 General Chemistry – Final Review Sheet</a></li>
         <li><a href="files/PHY211_SampleMidterm.pdf">PHY211 General Physics – Sample Midterm</a></li>
-      </ul>
-    </section>
-
-    <section class="section">
-      <h2>📂 Browse by Course</h2>
-      <ul>
-        <li><a href="courses/ma113/index.html">MA113 – Calculus I</a></li>
-        <li><a href="courses/che105/index.html">CHE105 – General Chemistry</a></li>
-        <li><a href="courses/phy211/index.html">PHY211 – General Physics</a></li>
-        <li><a href="courses/cs215/index.html">ME220 – Engineering Thermodynamics I</a></li>
       </ul>
     </section>
 
@@ -116,6 +138,17 @@
     🐾 StudyCat is not affiliated with the University of Kentucky. All content is student-submitted.<br>
     Made with love in the Commonwealth of Kentucky.
   </footer>
+
+  <script>
+    document.getElementById("search").addEventListener("input", function () {
+      const filter = this.value.toLowerCase();
+      const items = document.querySelectorAll("#course-list li");
+      items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(filter) ? "" : "none";
+      });
+    });
+  </script>
 
 </body>
 </html>
